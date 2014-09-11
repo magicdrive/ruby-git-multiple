@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/magicdrive/ruby-git-parallel.svg?branch=feature%2Frspec)](https://travis-ci.org/magicdrive/ruby-git-parallel)
+
 # Git::Parallel
 
 TODO: Write a gem description
