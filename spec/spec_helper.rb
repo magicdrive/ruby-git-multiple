@@ -15,6 +15,6 @@ def capture(stream)
   return result
 end
 
-$project_path = "#{File.expand_path("../", File.dirname(__FILE__))}"
+PROJECT_ROOT = "#{File.expand_path("../", File.dirname(__FILE__))}"
 
 __END__
