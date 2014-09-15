@@ -5,7 +5,7 @@ require 'git/multiple/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "git-multiple"
-  spec.version       = Git::Multiple
+  spec.version       = Git::Multiple::VERSION
   spec.authors       = ["Hiroshi IKEGAMI"]
   spec.email         = ["hiroshi.ikegami@magicdrive.jp"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
