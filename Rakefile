@@ -12,9 +12,5 @@ begin
     t.rspec_opts = ['-c', '-f progress', '-r ./spec/spec_helper.rb']
     t.pattern = 'spec/**/*_spec.rb'
   end
-  RSpec.configure do |config|
-    config.mock_with :rr
-    # config.mock_with RR::Adapters::Rspec
-  end
 rescue LoadError => e
 end

@@ -2,10 +2,10 @@
 
 require 'thor'
 require 'find'
-require 'git/parallel/process'
+require 'git/multiple/process'
 
 module Git
-  module Parallel
+  module multiple
     class CLI < Thor
 
       public
@@ -19,7 +19,7 @@ module Git
         base_dir = options[:dirname]
         git_command = options[:exec]
         directories = find_dir(base_dir, options[:maxdepth])
-        Git::Parallel::Process.start(directories, git_command, opitons)
+        Git::Multiple.start(directories, git_command, opitons)
 
       end
 
@@ -33,7 +33,6 @@ module Git
       option :deny, alias: ["-v"], type: :boolean, default: false
       option :regexp, alias: ["-e"], type: :string, default: false
       def grep(pattern)
-
       end
 =end
 
