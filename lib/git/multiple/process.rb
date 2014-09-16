@@ -10,10 +10,10 @@ module Git
 
       class << self
         public
-        def start(directories, command, options, &block)
+        def start(directories, command, options)
           git_command = build_git_cmd(command, options)
 
-          func = block_given? ? Proc.new(&block) : proc {return true}
+          func = block_given? ? Proc.new(&block) : proc {true}
 
           Parallel.each(directories, in_threads: options[:job]) do |dirname|
             std_result = capture(:stdout) do
