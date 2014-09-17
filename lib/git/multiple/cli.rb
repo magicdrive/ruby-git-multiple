@@ -5,7 +5,7 @@ require 'find'
 require 'git/multiple/process'
 
 module Git
-  module multiple
+  module Multiple
     class CLI < Thor
 
       public
@@ -19,23 +19,9 @@ module Git
         base_dir = options[:dirname]
         git_command = options[:exec]
         directories = find_dir(base_dir, options[:maxdepth])
-        Git::Multiple.start(directories, git_command, opitons)
+        Git::Multiple::PrallelTask.start(directories, git_command, opitons)
 
       end
-
-=begin
-      desc "grep [OPTIONS]", "grep multiple repositories"
-      option :color, alias: "-c", type: :boolean, default: false
-      option :job, alias: "-j", type: :numeric, default: 1
-      option :dirname, alias: ["-d", "--dir"], type: :numeric, default: Dir::pwd
-      option :maxdepth, default: 1
-      option exec: :required, alias: ["-e","-exec"]
-      option :deny, alias: ["-v"], type: :boolean, default: false
-      option :regexp, alias: ["-e"], type: :string, default: false
-      def grep(pattern)
-      end
-=end
-
 
       default_task :manupulate
 

@@ -5,8 +5,8 @@ require 'stringio'
 require 'parallel'
 
 module Git
-  module Parallel
-    module Process
+  module Multiple
+    module PrallelTask
 
       class << self
         public
