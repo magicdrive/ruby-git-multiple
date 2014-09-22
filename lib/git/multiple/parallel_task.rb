@@ -17,23 +17,36 @@ module Git
           func = block_given? ? Proc.new(&block) : proc {true}
 
           Parallel.each(directories, in_threads: options[:job]) do |dirname|
+
+            disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$},1]
+            disp_dirname = options[:dirname] if dirname == options[:dirname]
+
+            puts "#{disp_dirname} ::: git #{command}"
             std_result = capture(:stdout) do
               Dir.chdir(dirname)
               Process::wait(spawn(git_command))
             end
+            puts
+
             next if func.call(dirname, std_result)
-            puts result
           end
 
         end
 
         private
         def build_git_cmd(sub_command, options)
-          git_option = %{}
-          git_option << "-c color.ui awlways" if options[:color]
+          color_opt = case `git config color.ui`
+                      when /(?:^(?:always|true))/ then 'always'
+                      when /(?:^false$)/ then 'false'
+                      end
+          color_opt = ->() {
+            case options[:color]
+            when true  then 'always'
+            when false then 'false'
+            end
+          }.call() unless options[:color].nil?
 
-          puts "git #{git_option} #{sub_command}"
-          return "git #{git_option} #{sub_command}"
+          return "git -c color.ui=#{color_opt} #{sub_command}"
         end
 
         def capture(stream, &block)
