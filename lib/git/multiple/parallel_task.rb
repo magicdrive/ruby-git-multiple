@@ -4,6 +4,7 @@ require 'systemu'
 require 'stringio'
 require 'parallel'
 
+
 module Git
   module Multiple
     module PrallelTask
@@ -31,6 +32,7 @@ module Git
           git_option = %{}
           git_option << "-c color.ui awlways" if options[:color]
 
+          puts "git #{git_option} #{sub_command}"
           return "git #{git_option} #{sub_command}"
         end
 
