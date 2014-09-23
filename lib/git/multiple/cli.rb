@@ -12,7 +12,7 @@ module Git
       public
       desc "manupulate [OPTIONS]", "parallel manupulation for multiple repositories"
       option :color, alias: "-c", type: :boolean
-      option :job, alias: "-j", type: :numeric, default: 1
+      option :job, alias: ["-j", "--jobs"], type: :numeric, default: 1
       option :dirname, alias: ["-d", "--dir"], type: :numeric, default: Dir::pwd
       option :maxdepth, default: 1
       option :exec , required: true, alias: ["-e","-exec"]

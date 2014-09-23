@@ -18,26 +18,23 @@ module Git
 
           Parallel.each(directories, in_threads: options[:job]) do |dirname|
 
-            disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$},1]
+            disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$}xo, 1]
             disp_dirname = options[:dirname] if dirname == options[:dirname]
 
-            puts "#{disp_dirname} ::: git #{command}"
-            std_result = capture(:stdout) do
-              Dir.chdir(dirname)
-              Process::wait(spawn(git_command))
-            end
-            puts
+            result = "#{disp_dirname} ::: git #{command}\n"
+            result << %x{#{git_command}}
+            result << "\n"
+            next unless func.call(dirname, result)
 
-            next if func.call(dirname, std_result)
+            puts result
           end
-
         end
 
         private
         def build_git_cmd(sub_command, options)
-          color_opt = case `git config color.ui`
-                      when /(?:^(?:always|true))/ then 'always'
-                      when /(?:^false$)/ then 'false'
+          color_opt = case %x{git config color.ui}
+                      when /(?:^(?:always|true))/xo then 'always'
+                      when /(?:^false$)/xo then 'false'
                       end
           color_opt = ->() {
             case options[:color]
