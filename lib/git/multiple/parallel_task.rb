@@ -21,8 +21,14 @@ module Git
 
             disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$}xo, 1]
             disp_dirname = options[:dirname] if dirname == options[:dirname]
+            result = ""
 
-            result = h.color("#{disp_dirname} ::: git #{command}\n", :cyan)
+            result << "#{h.color("result", :black,:on_green)} " <<
+                      "#{h.color("git #{command}", :magenta)} " <<
+                      "::: " <<
+                      "#{h.color(disp_dirname, :yellow)}" <<
+                      "\n"
+
             result << %x{#{git_command} 2>&1}
             result << "\n"
             next unless func.call(dirname, result)
