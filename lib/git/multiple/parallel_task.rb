@@ -19,6 +19,7 @@ module Git
           h = HighLine.new
           Parallel.each(directories, in_threads: options[:jobs]) do |dirname|
 
+            Dir::chdir(dirname)
             disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$}xo, 1]
             disp_dirname = options[:dirname] if dirname == options[:dirname]
             result = ""
