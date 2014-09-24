@@ -14,7 +14,7 @@ module Git
       option :"no-color", aliases: "-c", type: :boolean
       option :jobs, aliases: "-j", type: :numeric, default: 1
       option :dirname, aliases: "-d", type: :numeric, default: Dir::pwd
-      option :maxdepth, default: 1
+      option :maxdepth, default: 1, aliases: "-m"
       option :exec , required: true, aliases: "-e"
       def manupulate
         base_dir = options[:dirname]
