@@ -11,11 +11,11 @@ module Git
 
       public
       desc "manupulate [OPTIONS]", "parallel manupulation for multiple repositories"
-      option :"no-color", alias: "-c", type: :boolean
-      option :jobs, alias: "-j", type: :numeric, default: 1
-      option :dirname, alias: "-d", type: :numeric, default: Dir::pwd
+      option :"no-color", aliases: "-c", type: :boolean
+      option :jobs, aliases: "-j", type: :numeric, default: 1
+      option :dirname, aliases: "-d", type: :numeric, default: Dir::pwd
       option :maxdepth, default: 1
-      option :exec , required: true, alias: "-e"
+      option :exec , required: true, aliases: "-e"
       def manupulate
         base_dir = options[:dirname]
         git_command = options[:exec]
