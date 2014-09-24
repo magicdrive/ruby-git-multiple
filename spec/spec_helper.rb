@@ -1,5 +1,5 @@
 # spec_helper file.
-require File.expand_path('../lib/git/parallel', File.dirname(__FILE__))
+require File.expand_path('../lib/git/multiple', File.dirname(__FILE__))
 require 'stringio'
 require 'pry'
 

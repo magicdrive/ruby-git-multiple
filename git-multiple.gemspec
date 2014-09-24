@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Git::Multiple::VERSION
   spec.authors       = ["Hiroshi IKEGAMI"]
   spec.email         = ["hiroshi.ikegami@magicdrive.jp"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Run the git command in parallel much to multiple git repositories.}
+  spec.description   = %q{Run the git command in parallel much to multiple git repositories.}
   spec.homepage      = "https://github.com/magicdrive/ruby-git-multiple"
   spec.license       = "MIT"
 
