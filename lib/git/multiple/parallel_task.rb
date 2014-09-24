@@ -17,17 +17,21 @@ module Git
           func = block_given? ? Proc.new(&block) : proc {true}
 
           h = HighLine.new
-          Parallel.each(directories, in_threads: options[:job]) do |dirname|
+          Parallel.each(directories, in_threads: options[:jobs]) do |dirname|
 
             disp_dirname = dirname[%r{^#{options[:dirname]}/(.*)$}xo, 1]
             disp_dirname = options[:dirname] if dirname == options[:dirname]
             result = ""
 
-            result << "#{h.color("result", :black,:on_green)} " <<
-                      "#{h.color("git #{command}", :magenta)} " <<
-                      "::: " <<
-                      "#{h.color(disp_dirname, :yellow)}" <<
-                      "\n"
+            if options[:"no-color"]
+              result << "result git #{command} ::: #{disp_dirname}" << "\n"
+            else
+              result << "#{h.color("result", :black,:on_green)} " <<
+                        "#{h.color("git #{command}", :magenta)} " <<
+                        "::: " <<
+                        "#{h.color(disp_dirname, :yellow)}" <<
+                        "\n"
+            end
 
             result << %x{#{git_command} 2>&1}
             result << "\n"
@@ -39,16 +43,10 @@ module Git
 
         private
         def build_git_cmd(sub_command, options)
-          color_opt = case %x{git config color.ui}
-                      when /(?:^(?:always|true))/xo then 'always'
-                      when /(?:^false$)/xo then 'false'
+          color_opt = case options[:"no-color"]
+                      when true then 'false'
+                      else 'always'
                       end
-          color_opt = ->() {
-            case options[:color]
-            when true  then 'always'
-            when false then 'false'
-            end
-          }.call() unless options[:color].nil?
 
           return "git -c color.ui=#{color_opt} #{sub_command}"
         end
