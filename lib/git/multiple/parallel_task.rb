@@ -1,6 +1,5 @@
 # conding: utf-8
 
-require 'systemu'
 require 'stringio'
 require 'parallel'
 require 'highline'
