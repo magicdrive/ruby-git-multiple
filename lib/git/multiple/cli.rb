@@ -3,7 +3,6 @@
 require 'thor'
 require 'find'
 require 'git/multiple/parallel_task'
-require 'pry'
 
 module Git
   module Multiple
