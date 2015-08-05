@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/git-multiple.svg)](http://badge.fury.io/rb/git-multiple)
 [![Build Status](https://travis-ci.org/magicdrive/ruby-git-multiple.svg?branch=master)](https://travis-ci.org/magicdrive/ruby-git-multiple)
 [![Build Status](https://drone.io/github.com/magicdrive/ruby-git-multiple/status.png)](https://drone.io/github.com/magicdrive/ruby-git-multiple/latest)
 
