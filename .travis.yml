@@ -3,6 +3,4 @@ script: bundle exec rake spec
 language: ruby
 rvm:
 - 2.0.0
-- 1.9.3
 - jruby-19mode
-- rbx-2
